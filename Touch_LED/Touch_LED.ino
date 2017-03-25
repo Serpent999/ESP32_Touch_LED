@@ -15,8 +15,26 @@
    T8 = GPIO33
    T9 = GPIO32 */
 
-   
+
 uint8_t led = 18;
+
+
+int buff(int pin)                                       //Function to handle the touch raw sensor data
+{
+
+  int out = (50 - touchRead(pin));                         // Get the difference between current and previous values and scale by n, value very sensitive currently
+  // change to adjust sensitivity as required
+  if (out > 0 )
+  {
+    return (out + 2);
+  }
+  else
+  {
+    return 0;                                        //Else, return 0
+  }
+
+}
+
 void setup()
 {
   ledcAttachPin(led, 1);                                                    //Configure variable led, pin 12 to channel 1
@@ -26,22 +44,6 @@ void setup()
   Serial.begin(115200);
 
 
-
-}
-
-int buff(int pin)                                       //Function to handle the touch raw sensor data
-{
-  
-  int out = (50-touchRead(pin));                           // Get the difference between current and previous values and scale by n, value very sensitive currently
-                                                        // change to adjust sensitivity as required
-  if (out > 0 )
-  {
-    return (out+2);
-  }
-  else
-  {
-    return 0;                                        //Else, return 0
-  }
 
 }
 void loop()
