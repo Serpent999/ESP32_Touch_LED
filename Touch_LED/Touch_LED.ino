@@ -31,15 +31,15 @@ int buff(int pin)                                       //Function to handle the
 {
   int prev = analogRead(pin);
   int curr = analogRead(pin);
-  int out = abs(curr - prev);                           // Get the difference between current and previous values and scale by 50, value very sensitive currently
+  int out = abs(curr - prev);                           // Get the difference between current and previous values and scale by n, value very sensitive currently
                                                         // change to adjust sensitivity as required
-  if (out > 50)
+  if (out > 100)
   {
-    return out;
+    return (out/100);
   }
   else if (curr == 4095)                              // At peak, difference would be 0, hence a handler
   {
-    return (curr / 50);
+    return (curr / 100);
   }
   else
   {
