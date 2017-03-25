@@ -31,17 +31,12 @@ void setup()
 
 int buff(int pin)                                       //Function to handle the touch raw sensor data
 {
-  int prev = analogRead(pin);
-  int curr = analogRead(pin);
-  int out = abs(curr - prev);                           // Get the difference between current and previous values and scale by n, value very sensitive currently
+  
+  int out = (50-touchRead(pin));                           // Get the difference between current and previous values and scale by n, value very sensitive currently
                                                         // change to adjust sensitivity as required
-  if (out > 100)
+  if (out > 0 )
   {
-    return (out/100);
-  }
-  else if (curr == 4095)                              // At peak, difference would be 0, hence a handler
-  {
-    return (curr / 100);
+    return (out+2);
   }
   else
   {
@@ -55,11 +50,6 @@ void loop()
   Serial.println(buff(T0));
 
 
-  if (buff(T0) == 0)
-  {
-    ledcWrite(1, 0);
-  }
-  else
   {
     ledcWrite(1, (buff(T0)));                 // Using T0 for touch data
   }
