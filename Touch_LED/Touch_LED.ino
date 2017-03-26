@@ -22,7 +22,7 @@ uint8_t led = 18;
 int buff(int pin)                                       //Function to handle the touch raw sensor data
 {
 
-  int out = (50 - touchRead(pin));                         // Get the difference between current and previous values and scale by n, value very sensitive currently
+  int out = (50 - touchRead(pin));                         //  Scale by n, value very sensitive currently
   // change to adjust sensitivity as required
   if (out > 0 )
   {
