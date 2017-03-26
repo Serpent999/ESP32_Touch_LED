@@ -37,7 +37,7 @@ int buff(int pin)                                       //Function to handle the
 
 void setup()
 {
-  ledcAttachPin(led, 1);                                                    //Configure variable led, pin 12 to channel 1
+  ledcAttachPin(led, 1);                                                    //Configure variable led, pin 18 to channel 1
   ledcSetup(1, 12000, 8);                                                  // 12 kHz PWM and 8 bit resolution
   Serial.println("Testing ledc 12 channel 1");
   ledcWrite(1, 100);                                                       // Write a test value of 100 to channel 1
